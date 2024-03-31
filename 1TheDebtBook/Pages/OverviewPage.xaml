@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_1TheDebtBook.Pages.OverviewPage"
+             Title="OverviewPage">
+     <ScrollView>
+        <StackLayout>
+            <Frame 
+           Padding="15" 
+           CornerRadius="10" 
+           HeightRequest="300" 
+           WidthRequest="550"
+           BorderColor="White">
+
+                <ScrollView>
+                    <StackLayout>
+                        <CollectionView ItemsSource="{Binding Transactions}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="1" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid Padding="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Text ="{Binding dTransactionDate}" HorizontalOptions="FillAndExpand" />
+
+                                            <Label Grid.Column="1" Text="{Binding Amount}" HorizontalOptions="CenterAndExpand" />
+
+                                        </Grid>
+                                        <!-- Adjusted BoxView -->
+                                        <BoxView HeightRequest="1" 
+                                         BackgroundColor="White" 
+                                         Margin="0"
+                                         HorizontalOptions="FillAndExpand"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <VerticalStackLayout
+                                Padding="30,0"
+                                Spacing="25">
+                            <Label
+                                VerticalOptions = "Center"
+                                HorizontalOptions = "Center"/>
+
+                            <Label Text="{Binding dTransactionDate}" Grid.Row="1" />
+
+                            <Entry Placeholder = "Enter Amount"
+                                Text = "{Binding InputAmount}"
+                                Grid.Row="2"/>
+
+                            <Button
+                                Command="{Binding AddTransactionCommand}"
+                                Text="Save" 
+                                HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </StackLayout>
+                    
+                </ScrollView>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

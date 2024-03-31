@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:_1TheDebtBook.ViewModels"
+             x:DataType="viewmodel:AddViewModel"
+             x:Class="_1TheDebtBook.Pages.AddPage"
+             Title="AddPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label
+            VerticalOptions = "Center"
+            HorizontalOptions = "Center"/>
+
+            <Entry Placeholder = "Enter Name"
+                   Text = "{Binding Name}"
+                   Grid.Row="1"/>
+
+            <Entry Placeholder = "Enter Amount"
+                   Text = "{Binding Amount}"
+                   Grid.Row="2"/>
+            <Label
+                Text="{Binding ViewName}"
+                />
+            <Label
+                Text="{Binding ViewAmount}" />
+
+            <Button
+                Command="{Binding AddDebtorViewCommand}"
+                Text="Save" 
+                HorizontalOptions="Fill" />
+
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+
