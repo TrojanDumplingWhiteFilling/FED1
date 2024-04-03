@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="TheDebtBook.app/Contents/MacOS/TheDebtBook">
+      <BCSymbolMapName>TheDebtBook.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>TheDebtBook.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/oliverkok/Documents/Universitet/gitDumpling/FED1/1TheDebtBook/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mtouch-symbols.list</SymbolFile>
+      <DSymName>TheDebtBook.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/oliverkok/Documents/Universitet/gitDumpling/FED1/1TheDebtBook</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

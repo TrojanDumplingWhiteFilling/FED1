@@ -41,9 +41,15 @@ public partial class OverviewViewModel : ObservableObject
     {
         dTransaction transaction = new dTransaction
         {
-            Amount = InputAmount
+            // Assuming the transaction model has a DebtorId field or similar to link the transaction to the debtor
+            Amount = InputAmount,
+            // DebtorId = this.DebtorId // You need to know which debtor the transaction is for
         };
+
         await _database.AddTransaction(transaction);
         Transactions.Add(transaction);
+
+        // Update the debtor's total amount in MainViewModel
+        TransactionViewModel.UpdateDebtorAmount(transaction.DebtorId, transaction.Amount);
     }
 }

@@ -13,11 +13,24 @@ namespace _1TheDebtBook.ViewModels
         [ObservableProperty]
         private ObservableCollection<Debtor> _debtors;
 
+        [ObservableProperty]
+        private Debtor? _selectedDebtor;
+
         public MainViewModel()
         {
             Debtors = new ObservableCollection<Debtor>();
             _database = new Database();
             _ = Initialize();
+        }
+
+        // Updates the amount of a debtor, from the overviewViewModel
+        public void UpdateDebtorAmount(int debtorId, double amount)
+        {
+            var debtor = Debtors.FirstOrDefault(d => d.Id == debtorId);
+            if (debtor != null)
+            {
+                debtor.Amount += amount; // Adds the new transaction amount to the existing amount
+            }
         }
 
         private readonly Database _database;
@@ -47,17 +60,15 @@ namespace _1TheDebtBook.ViewModels
             await _database.ClearAllData();
         }
 
-        [ObservableProperty]
-        Debtor _selectedDebtor;
-        
-
         [RelayCommand]
         public async Task ViewTransactions()
         {
-            // Navigate to TransactionsPage passing debtor's ID
-            await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?DebtorId={SelectedDebtor.Id}");
+            if (SelectedDebtor != null)
+            {
+                // Navigate to TransactionsPage passing debtor's ID
+                await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?DebtorId={SelectedDebtor.Id}");
+            }
         }
-    
 
         [RelayCommand]
         async Task NavigateOver() =>

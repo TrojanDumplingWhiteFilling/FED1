@@ -19,21 +19,21 @@ namespace _1TheDebtBook.ViewModels
         Debtor debtor;
 
         MainViewModel debtorsViewModel;
-        public AddViewModel(MainViewModel debtorsViewModel)
+        public AddViewModel(MainViewModel? debtorsViewModel)
         {
             _database = new Database();
-            this.debtorsViewModel = debtorsViewModel;
+            this.debtorsViewModel = debtorsViewModel!;
+            debtor = null!;
         }
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(ViewName))]
-        public string name;
-        public string ViewName => Name;
+        public string? name;
+        public string? ViewName => Name;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(ViewAmount))]
         double amount;
-
         public double ViewAmount => Amount;
 
         [RelayCommand]
@@ -41,7 +41,7 @@ namespace _1TheDebtBook.ViewModels
         {
             Debtor debtor = new Debtor
             {
-                Name = Name,
+                Name = ViewName ?? string.Empty,
                 Amount = Amount
             };
             await _database.AddDebtor(debtor);
