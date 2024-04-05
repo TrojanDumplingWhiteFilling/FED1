@@ -44,7 +44,13 @@ namespace _1TheDebtBook.ViewModels
                 Name = ViewName ?? string.Empty,
                 Amount = Amount
             };
-            await _database.AddDebtor(debtor);
+
+            dTransaction dTrans = new dTransaction()
+            {
+                Amount = Amount
+            };
+
+            await _database.AddDebtorAsync(debtor, dTrans);
             debtorsViewModel.Debtors.Add(debtor);
         }
 

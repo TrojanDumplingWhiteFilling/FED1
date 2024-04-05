@@ -49,15 +49,16 @@ namespace _1TheDebtBook.Data
             var query = _connection.Table<Debtor>().Where(t => t.Id == id);
             return await query.FirstOrDefaultAsync();
         }
-        public async Task<int> AddDebtorAsync(Debtor debtor, dTransaction Amount)
+        public async Task<int> AddDebtorAsync(Debtor debtor, dTransaction dTrans)
         {
             try
             {
+                
                 await _connection.InsertAsync(debtor);
                 var id = await _connection.Table<Debtor>().OrderByDescending(d => d.Id).FirstOrDefaultAsync();
-                Amount.DebtorId = id.Id;   // Set the debtor ID for the transaction
+                dTrans.DebtorId = id.Id;   // Set the debtor ID for the transaction
 
-                await _connection.InsertAsync(Amount);
+                await _connection.InsertAsync(dTrans);
                 return id.Id;
             }
             catch (SQLite.SQLiteException ex)

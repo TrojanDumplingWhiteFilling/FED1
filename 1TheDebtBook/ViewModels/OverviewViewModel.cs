@@ -7,7 +7,7 @@ using _1TheDebtBook.Pages;
 
 
 namespace _1TheDebtBook.ViewModels;
-
+[QueryProperty(nameof(Debtor), "debtorId")]
 public partial class OverviewViewModel : ObservableObject
 {
     [ObservableProperty]
@@ -43,7 +43,7 @@ public partial class OverviewViewModel : ObservableObject
         {
             // Assuming the transaction model has a DebtorId field or similar to link the transaction to the debtor
             Amount = InputAmount,
-            // DebtorId = this.DebtorId // You need to know which debtor the transaction is for
+            DebtorId = this.debtorId // You need to know which debtor the transaction is for
         };
 
         await _database.AddTransaction(transaction);
