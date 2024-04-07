@@ -4,36 +4,43 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using _1TheDebtBook.Models;
 using _1TheDebtBook.Pages;
-
+using System.Threading.Tasks;
 
 namespace _1TheDebtBook.ViewModels;
+
+
+
 [QueryProperty(nameof(Debtor), "debtorId")]
 public partial class OverviewViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private ObservableCollection<dTransaction> _transactions;
-
-    private readonly Database _database;
-
-    MainViewModel TransactionViewModel;
-    public OverviewViewModel(MainViewModel TransactionViewModel)
+    private int _debtorId;
+    public int DebtorId
     {
-        Transactions = new ObservableCollection<dTransaction>();
-        _database = new Database();
-        this.TransactionViewModel = TransactionViewModel;
-        _ = Initialize();
+        get => _debtorId;
+        set => SetProperty(ref _debtorId, value);
     }
-    private async Task Initialize()
+    private readonly Database _database;
+    public ObservableCollection<dTransaction> Transactions { get; }
+
+    public OverviewViewModel()
     {
-        var dTransactionViews = await _database.GetTransactions();
-        foreach (var dTransactionView in dTransactionViews)
+        _database = new Database();
+        Transactions = new ObservableCollection<dTransaction>();
+    }
+
+    public async Task InitializeWithDebtor(int debtorId)
+    {
+        _debtorId = debtorId;
+        var transactions = await _database.GetTransactionsForDebtor(_debtorId);
+        foreach (var transaction in transactions)
         {
-            Transactions.Add(dTransactionView);
+            Transactions.Add(transaction);
         }
     }
 
     [ObservableProperty]
-    double inputAmount;
+    private double inputAmount;
+
 
 
     [RelayCommand]
@@ -41,15 +48,14 @@ public partial class OverviewViewModel : ObservableObject
     {
         dTransaction transaction = new dTransaction
         {
-            // Assuming the transaction model has a DebtorId field or similar to link the transaction to the debtor
             Amount = InputAmount,
-            DebtorId = this.debtorId // You need to know which debtor the transaction is for
+            DebtorId = this.DebtorId // Correct the casing to match the property name
         };
 
         await _database.AddTransaction(transaction);
         Transactions.Add(transaction);
 
-        // Update the debtor's total amount in MainViewModel
-        TransactionViewModel.UpdateDebtorAmount(transaction.DebtorId, transaction.Amount);
+        // TransactionViewModel.UpdateDebtorAmount(transaction.DebtorId, transaction.Amount);
     }
+
 }

@@ -10,6 +10,15 @@ namespace _1TheDebtBook.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        private static MainViewModel? _instance;
+        public static MainViewModel Instance => _instance ??= new MainViewModel();
+        private int _debtorId; // Backing field for DebtorId
+        public int DebtorId
+        {
+            get => _debtorId;
+            set => SetProperty(ref _debtorId, value);
+        }
+
         [ObservableProperty]
         private ObservableCollection<Debtor> _debtors;
 
@@ -42,6 +51,8 @@ namespace _1TheDebtBook.ViewModels
             {
                 Debtors.Add(debtorView);
             }
+
+            var overviewViewModel = new OverviewViewModel();
         }
 
         [RelayCommand]
@@ -65,10 +76,13 @@ namespace _1TheDebtBook.ViewModels
         {
             if (SelectedDebtor != null)
             {
-                // Navigate to TransactionsPage passing debtor's ID
-                await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?DebtorId={SelectedDebtor.Id}");
+                DebtorId = SelectedDebtor.Id; // Set DebtorId to the ID of the selected debtor
+                var route = $"{nameof(OverviewPage)}?DebtorId={DebtorId}";
+                await Shell.Current.GoToAsync(route);
             }
         }
+
+
 
         [RelayCommand]
         async Task NavigateOver() =>
