@@ -33,7 +33,7 @@ public partial class OverviewViewModel : ObservableObject
 
     public async Task InitializeWithDebtor(int debtorId)
     {
-        _debtorId = debtorId;
+        _debtorId = MainViewModel.GetInstance().DebtorId;
         var transactions = await _database.GetTransactionsForDebtor(_debtorId);
         foreach (var transaction in transactions)
         {
