@@ -13,6 +13,9 @@ namespace _1TheDebtBook.ViewModels;
 [QueryProperty(nameof(Debtor), "debtorId")]
 public partial class OverviewViewModel : ObservableObject
 {
+    //singleton for overviewViewModel
+    private static OverviewViewModel? _instanceOverview;
+    public static OverviewViewModel Instance => _instanceOverview ??= new OverviewViewModel();
     private int _debtorId;
     public int DebtorId
     {
@@ -36,6 +39,15 @@ public partial class OverviewViewModel : ObservableObject
         {
             Transactions.Add(transaction);
         }
+    }
+
+    public static OverviewViewModel GetInstance()
+    {
+        if (_instanceOverview == null)
+        {
+            _instanceOverview = new OverviewViewModel();
+        }
+        return _instanceOverview;
     }
 
     [ObservableProperty]

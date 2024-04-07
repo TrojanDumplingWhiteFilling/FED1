@@ -32,6 +32,15 @@ namespace _1TheDebtBook.ViewModels
             _ = Initialize();
         }
 
+        public static MainViewModel GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new MainViewModel();
+            }
+            return _instance;
+        }
+
         // Updates the amount of a debtor, from the overviewViewModel
         public void UpdateDebtorAmount(int debtorId, double amount)
         {
@@ -71,14 +80,13 @@ namespace _1TheDebtBook.ViewModels
             await _database.ClearAllData();
         }
 
-        [RelayCommand]
-        public async Task ViewTransactions()
+        private async void OnDebtorSelected(Debtor debtor)
         {
-            if (SelectedDebtor != null)
+            if (debtor != null)
             {
-                DebtorId = SelectedDebtor.Id; // Set DebtorId to the ID of the selected debtor
-                var route = $"{nameof(OverviewPage)}?DebtorId={DebtorId}";
-                await Shell.Current.GoToAsync(route);
+                DebtorId = debtor.Id;
+                await OverviewViewModel.GetInstance().InitializeWithDebtor(debtor.Id);
+                await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?debtorId={debtor.Id}");
             }
         }
 
