@@ -31,6 +31,7 @@ public partial class OverviewViewModel : ObservableObject
     [ObservableProperty]
     double inputAmount;
 
+    
 
     [RelayCommand]
     public async Task AddTransaction()

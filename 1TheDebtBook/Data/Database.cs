@@ -42,13 +42,16 @@ namespace _1TheDebtBook.Data
         {
             return await _connection.InsertAsync(item);
         }
-        public async Task<int> DeleteDebtor(Debtor item)
+        public async Task<int> UpdateDebtor(int id, double amount)
         {
-            return await _connection.DeleteAsync(item);
-        }
-        public async Task<int> UpdateDebtor(Debtor item)
-        {
-            return await _connection.UpdateAsync(item);
+            var debtor = await GetDebtor(id);
+
+            if (debtor == null)
+            {
+                return -1;
+            }
+            debtor.Amount += amount;
+            return await _connection.UpdateAsync(debtor);
         }
 
         // Methods for Transactions
