@@ -1,17 +1,20 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using SQLite;
 
 namespace _1TheDebtBook.Models
 {
-    public partial class Debtor : ObservableObject
+    public class Debtor
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [ObservableProperty]
-        private string? name;
+        public string Name { get; set; }
 
-        [ObservableProperty]
-        private double amount;
+        public double Amount { get; set; }
     }
 }
