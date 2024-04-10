@@ -1,6 +1,5 @@
 ﻿using SQLite;
 using _1TheDebtBook.Models;
-using System.Transactions;
 
 namespace _1TheDebtBook.Data
 {
@@ -32,81 +31,32 @@ namespace _1TheDebtBook.Data
         }
         public async Task<List<Debtor>> GetDebtors()
         {
-            try
-            {
-                return await _connection.Table<Debtor>().ToListAsync();
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<Debtor>();
-            }
-
-
+            return await _connection.Table<Debtor>().ToListAsync();
         }
         public async Task<Debtor> GetDebtor(int id)
         {
             var query = _connection.Table<Debtor>().Where(t => t.Id == id);
             return await query.FirstOrDefaultAsync();
         }
-        public async Task<int> AddDebtorAsync(Debtor debtor, dTransaction dTrans)
+        public async Task<int> AddDebtor(Debtor item)
         {
-            try
-            {
-                
-                await _connection.InsertAsync(debtor);
-                var id = await _connection.Table<Debtor>().OrderByDescending(d => d.Id).FirstOrDefaultAsync();
-                dTrans.DebtorId = id.Id;   // Set the debtor ID for the transaction
-
-                await _connection.InsertAsync(dTrans);
-                return id.Id;
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
-            }
-
+            return await _connection.InsertAsync(item);
         }
         public async Task<int> DeleteDebtor(Debtor item)
         {
-            try
-            {
-                return await _connection.DeleteAsync(item);
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
-            }
-
+            return await _connection.DeleteAsync(item);
         }
-        public async Task<int> UpdateDebtor(Debtor item)
+        public async Task<int> UpdateDebtor(int id, double amount)
         {
-            try
-            {
-                return await _connection.UpdateAsync(item);
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
-            }
+            var debtor = await GetDebtor(id);
+            debtor.Amount += amount;
+            return await _connection.UpdateAsync(debtor);
         }
 
         // Methods for Transactions
         public async Task<List<dTransaction>> GetTransactions()
         {
-            try
-            {
-                return await _connection.Table<dTransaction>().ToListAsync();
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<dTransaction>();
-            }
-
+            return await _connection.Table<dTransaction>().ToListAsync();
         }
         public async Task<dTransaction> GetTransaction(int id)
         {
@@ -115,40 +65,15 @@ namespace _1TheDebtBook.Data
         }
         public async Task<int> AddTransaction(dTransaction item)
         {
-            try
-            {
-                return await _connection.InsertAsync(item);
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
-            }
-
+            return await _connection.InsertAsync(item);
         }
         public async Task<int> DeleteTransaction(dTransaction item)
         {
-            try
-            {
-                return await _connection.DeleteAsync(item);
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
-            }
+            return await _connection.DeleteAsync(item);
         }
         public async Task<int> UpdateTransaction(dTransaction item)
         {
-            try
-            {
-                return await _connection.UpdateAsync(item);
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
-            }
+            return await _connection.UpdateAsync(item);
         }
 
         // Method to get transactions for a specific debtor ID
@@ -160,15 +85,8 @@ namespace _1TheDebtBook.Data
         // Method to clear all data from both tables
         public async Task ClearAllData()
         {
-            try
-            {
-                await _connection.DeleteAllAsync<Debtor>();
-                await _connection.DeleteAllAsync<dTransaction>();
-            }
-            catch (SQLite.SQLiteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            await _connection.DeleteAllAsync<Debtor>();
+            await _connection.DeleteAllAsync<dTransaction>();
         }
     }
 }

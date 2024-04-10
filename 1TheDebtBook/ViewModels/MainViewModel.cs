@@ -10,45 +10,14 @@ namespace _1TheDebtBook.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private static MainViewModel? _instance;
-        public static MainViewModel Instance => _instance ??= new MainViewModel();
-        private int _debtorId; // Backing field for DebtorId
-        public int DebtorId
-        {
-            get => _debtorId;
-            set => SetProperty(ref _debtorId, value);
-        }
-
         [ObservableProperty]
         private ObservableCollection<Debtor> _debtors;
-
-        [ObservableProperty]
-        private Debtor? _selectedDebtor;
 
         public MainViewModel()
         {
             Debtors = new ObservableCollection<Debtor>();
             _database = new Database();
             _ = Initialize();
-        }
-
-        public static MainViewModel GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new MainViewModel();
-            }
-            return _instance;
-        }
-
-        // Updates the amount of a debtor, from the overviewViewModel
-        public void UpdateDebtorAmount(int debtorId, double amount)
-        {
-            var debtor = Debtors.FirstOrDefault(d => d.Id == debtorId);
-            if (debtor != null)
-            {
-                debtor.Amount += amount; // Adds the new transaction amount to the existing amount
-            }
         }
 
         private readonly Database _database;
@@ -60,8 +29,6 @@ namespace _1TheDebtBook.ViewModels
             {
                 Debtors.Add(debtorView);
             }
-
-            var overviewViewModel = new OverviewViewModel();
         }
 
         [RelayCommand]
@@ -80,16 +47,16 @@ namespace _1TheDebtBook.ViewModels
             await _database.ClearAllData();
         }
 
-        private async void OnDebtorSelected(Debtor debtor)
-        {
-            if (debtor != null)
-            {
-                DebtorId = debtor.Id;
-                await OverviewViewModel.GetInstance().InitializeWithDebtor(debtor.Id);
-                await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?debtorId={debtor.Id}");
-            }
-        }
+        [ObservableProperty]
+        Debtor _selectedDebtor;
 
+
+        [RelayCommand]
+        public async Task ViewTransactions()
+        {
+            // Navigate to TransactionsPage passing debtor's ID
+            await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?DebtorId={SelectedDebtor.Id}");
+        }
 
 
         [RelayCommand]

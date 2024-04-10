@@ -18,11 +18,11 @@ namespace _1TheDebtBook
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
             // adding view models
             builder.Services.AddSingleton<MainViewModel>();
             builder.Services.AddTransient<AddViewModel>();
-            builder.Services.AddTransient<OverviewViewModel>(); 
+            builder.Services.AddTransient<OverviewViewModel>();
             // adding pages
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<AddPage>();
