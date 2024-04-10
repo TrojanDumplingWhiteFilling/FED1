@@ -12,7 +12,10 @@ namespace _1TheDebtBook.ViewModels
     {
         [ObservableProperty]
         private ObservableCollection<Debtor> _debtors;
-
+        [ObservableProperty]
+        private string name;
+        [ObservableProperty]
+        private double amount;
         public MainViewModel()
         {
             Debtors = new ObservableCollection<Debtor>();
@@ -32,15 +35,12 @@ namespace _1TheDebtBook.ViewModels
         }
 
         [RelayCommand]
-        async Task Navigate() =>
-            await AppShell.Current.GoToAsync(nameof(AddPage));
-
-        [RelayCommand]
         public async Task DeleteDebtor(Debtor debtor)
         {
             await _database.DeleteDebtor(debtor);
             Debtors.Remove(debtor);
         }
+
         [RelayCommand]
         public async Task ClearAllData()
         {
@@ -48,16 +48,19 @@ namespace _1TheDebtBook.ViewModels
         }
 
         [ObservableProperty]
-        Debtor _selectedDebtor;
+        Debtor selectedDebtor;
 
 
         [RelayCommand]
         public async Task ViewTransactions()
         {
             // Navigate to TransactionsPage passing debtor's ID
-            await AppShell.Current.GoToAsync($"{nameof(OverviewPage)}?DebtorId={SelectedDebtor.Id}");
+            await AppShell.Current.GoToAsync(nameof(OverviewPage));
         }
 
+        [RelayCommand]
+        async Task Navigate() =>
+            await AppShell.Current.GoToAsync(nameof(AddPage));
 
         [RelayCommand]
         async Task NavigateOver() =>

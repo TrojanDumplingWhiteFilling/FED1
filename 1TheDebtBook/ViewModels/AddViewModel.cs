@@ -15,6 +15,8 @@ namespace _1TheDebtBook.ViewModels
 {
     public partial class AddViewModel : ObservableObject
     {
+        private readonly Database _database;
+
         [ObservableProperty]
         Debtor debtor;
 
@@ -47,8 +49,6 @@ namespace _1TheDebtBook.ViewModels
             await _database.AddDebtor(debtor);
             debtorsViewModel.Debtors.Add(debtor);
         }
-
-        private readonly Database _database;
     }
 }
 

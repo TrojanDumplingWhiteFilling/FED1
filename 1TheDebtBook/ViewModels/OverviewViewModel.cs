@@ -10,19 +10,25 @@ namespace _1TheDebtBook.ViewModels;
 
 public partial class OverviewViewModel : ObservableObject
 {
+    private int DebtorId;
     [ObservableProperty]
     private ObservableCollection<dTransaction> _transactions;
-
+    [ObservableProperty]
+    private DateTime dTransactionDate;
+    [ObservableProperty]
+    private double amount;
     private readonly Database _database;
-    public OverviewViewModel()
+    MainViewModel _debtorsViewModel;
+    public OverviewViewModel(MainViewModel debtorsViewModel)
     {
+        _debtorsViewModel = debtorsViewModel;
         Transactions = new ObservableCollection<dTransaction>();
         _database = new Database();
         _ = Initialize();
     }
     private async Task Initialize()
     {
-        var dTransactionViews = await _database.GetTransactions();
+        var dTransactionViews = await _database.GetTransactionsForDebtor(_debtorsViewModel.SelectedDebtor.Id);
         foreach (var dTransactionView in dTransactionViews)
         {
             Transactions.Add(dTransactionView);
@@ -38,8 +44,11 @@ public partial class OverviewViewModel : ObservableObject
     {
         dTransaction transaction = new dTransaction
         {
-            Amount = InputAmount
+            Amount = InputAmount,
+            DebtorId = _debtorsViewModel.SelectedDebtor.Id
         };
+        _debtorsViewModel.SelectedDebtor.Amount += InputAmount;
+
         await _database.AddTransaction(transaction);
         Transactions.Add(transaction);
     }

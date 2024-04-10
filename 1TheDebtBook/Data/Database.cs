@@ -10,15 +10,6 @@ namespace _1TheDebtBook.Data
         {
             var dataDir = FileSystem.AppDataDirectory;
             var databasePath = Path.Combine(dataDir, "DeptBook.db");
-
-            //string _dbEncryptionKey = SecureStorage.GetAsync("dbEncryptionKey").Result;
-
-            //if(string.isnullorempty(_dbencryptionkey))
-            //{
-            //    guid g = guid.newguid();
-            //    _dbencryptionkey = g.tostring();
-            //    securestorage.setasync("dbencryptionkey", _dbencryptionkey);
-            //}
             var dbOptions = new SQLiteConnectionString(databasePath, true);
 
             _connection = new SQLiteAsyncConnection(dbOptions);
@@ -58,10 +49,10 @@ namespace _1TheDebtBook.Data
         {
             return await _connection.Table<dTransaction>().ToListAsync();
         }
-        public async Task<dTransaction> GetTransaction(int id)
+        public async Task<List<dTransaction>> GetTransaction(int id)
         {
             var query = _connection.Table<dTransaction>().Where(t => t.Id == id);
-            return await query.FirstOrDefaultAsync();
+            return await query.ToListAsync();
         }
         public async Task<int> AddTransaction(dTransaction item)
         {
