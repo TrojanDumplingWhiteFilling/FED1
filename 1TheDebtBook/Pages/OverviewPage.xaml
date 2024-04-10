@@ -5,7 +5,14 @@
              x:DataType="viemodel:OverviewViewModel"
              x:Class="_1TheDebtBook.Pages.OverviewPage"
              Title="OverviewPage">
-     <ScrollView>
+
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackButtonPressedCommand}"
+                            IconOverride="back.png" />
+    </Shell.BackButtonBehavior>
+    
+    <ScrollView>
         <StackLayout>
             <Frame 
            Padding="15" 
@@ -50,10 +57,10 @@
                                 VerticalOptions = "Center"
                                 HorizontalOptions = "Center"/>
 
-                            <Label Text="{Binding DTransactionDate}" Grid.Row="1" />
+                            <DatePicker Date="{Binding DTransactionDate}" Grid.Row="1" />
 
                             <Entry Placeholder = "Enter Amount"
-                                Text = "{Binding InputAmount}"
+                                Text = "{Binding InputAmount, Mode=TwoWay}"
                                 Grid.Row="2"/>
 
                             <Button

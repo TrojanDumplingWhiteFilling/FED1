@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using _1TheDebtBook.Models;
 using _1TheDebtBook.Pages;
+using PInvoke;
 
 
 namespace _1TheDebtBook.ViewModels;
@@ -14,7 +15,7 @@ public partial class OverviewViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<dTransaction> _transactions;
     [ObservableProperty]
-    private DateTime dTransactionDate;
+    private DateTime dTransactionDate = DateTime.Now;
     [ObservableProperty]
     private double amount;
     private readonly Database _database;
@@ -36,20 +37,37 @@ public partial class OverviewViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    double inputAmount;
+    private double? inputAmount; // Nullable double to avoid binding failures when the input is empty
+
+
 
 
     [RelayCommand]
     public async Task AddTransaction()
     {
-        dTransaction transaction = new dTransaction
+        if (InputAmount.HasValue)
         {
-            Amount = InputAmount,
-            DebtorId = _debtorsViewModel.SelectedDebtor.Id
-        };
-        _debtorsViewModel.SelectedDebtor.Amount += InputAmount;
+            dTransaction transaction = new dTransaction
+            {
+                Amount = InputAmount.Value,
+                DebtorId = _debtorsViewModel.SelectedDebtor.Id,
+                DTransactionDate = DTransactionDate
+            };
+            _debtorsViewModel.SelectedDebtor.Amount += InputAmount.Value;
 
-        await _database.AddTransaction(transaction);
-        Transactions.Add(transaction);
+            await _database.AddTransaction(transaction);
+            Transactions.Add(transaction);
+        }
+        else
+        {
+            // Handle case where InputAmount is null
+            Console.WriteLine("Error: InputAmount is null. Cannot add transaction.");
+        }
+    }
+
+    [RelayCommand]
+    public async void BackButtonPressed()
+    {
+        await AppShell.Current.GoToAsync(nameof(MainPage));
     }
 }

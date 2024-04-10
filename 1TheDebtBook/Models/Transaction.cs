@@ -14,6 +14,7 @@ namespace _1TheDebtBook.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         [ObservableProperty]
         private DateTime dTransactionDate = DateTime.Now;
         [ObservableProperty]
