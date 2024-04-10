@@ -9,7 +9,6 @@ namespace _1TheDebtBook
             InitializeComponent();
             Routing.RegisterRoute(nameof(AddPage), typeof(AddPage));
             Routing.RegisterRoute(nameof(OverviewPage), typeof(OverviewPage));
-            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         }
     }
 }

@@ -48,7 +48,7 @@ namespace _1TheDebtBook.ViewModels
         }
 
         [ObservableProperty]
-        Debtor selectedDebtor = null;
+        Debtor? selectedDebtor = null;
 
 
         [RelayCommand]

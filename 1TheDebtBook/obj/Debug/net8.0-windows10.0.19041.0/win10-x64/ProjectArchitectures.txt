@@ -1,1 +1,1 @@
-D:\4. Semester\FED\FED1\1TheDebtBook\TheDebtBook.csproj;x64
+D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\TheDebtBook.csproj;x64

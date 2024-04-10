@@ -8,8 +8,7 @@
 
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior Command="{Binding BackButtonPressedCommand}"
-                            IconOverride="back.png" />
+        <BackButtonBehavior Command="{Binding BackButtonPressedCommand}"/>
     </Shell.BackButtonBehavior>
     
     <ScrollView>
@@ -60,7 +59,7 @@
                             <DatePicker Date="{Binding DTransactionDate}" Grid.Row="1" />
 
                             <Entry Placeholder = "Enter Amount"
-                                Text = "{Binding InputAmount, Mode=TwoWay}"
+                                Text = "{Binding InputAmount, Mode=TwoWay, FallbackValue=0}"
                                 Grid.Row="2"/>
 
                             <Button

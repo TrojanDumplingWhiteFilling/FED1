@@ -11,7 +11,6 @@ namespace _1TheDebtBook.ViewModels;
 
 public partial class OverviewViewModel : ObservableObject
 {
-    private int DebtorId;
     [ObservableProperty]
     private ObservableCollection<dTransaction> _transactions;
     [ObservableProperty]
@@ -54,7 +53,7 @@ public partial class OverviewViewModel : ObservableObject
                 DTransactionDate = DTransactionDate
             };
             _debtorsViewModel.SelectedDebtor.Amount += InputAmount.Value;
-
+            await _database.UpdateDebtor(_debtorsViewModel.SelectedDebtor.Id, InputAmount.Value);
             await _database.AddTransaction(transaction);
             Transactions.Add(transaction);
         }
@@ -66,8 +65,9 @@ public partial class OverviewViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async void BackButtonPressed()
+    public async Task BackButtonPressed()
     {
-        await AppShell.Current.GoToAsync(nameof(MainPage));
+        _debtorsViewModel.SelectedDebtor = null;
+        await AppShell.Current.Navigation.PopAsync();
     }
 }
