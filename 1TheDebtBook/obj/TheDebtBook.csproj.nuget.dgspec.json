@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\4_semester_git\\TrojansDumplingsWhite\\FED1\\1TheDebtBook\\TheDebtBook.csproj": {}
+    "C:\\OliverKok\\gitDumpling\\FED1\\1TheDebtBook\\TheDebtBook.csproj": {}
   },
   "projects": {
-    "D:\\4_semester_git\\TrojansDumplingsWhite\\FED1\\1TheDebtBook\\TheDebtBook.csproj": {
+    "C:\\OliverKok\\gitDumpling\\FED1\\1TheDebtBook\\TheDebtBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\4_semester_git\\TrojansDumplingsWhite\\FED1\\1TheDebtBook\\TheDebtBook.csproj",
+        "projectUniqueName": "C:\\OliverKok\\gitDumpling\\FED1\\1TheDebtBook\\TheDebtBook.csproj",
         "projectName": "TheDebtBook",
-        "projectPath": "D:\\4_semester_git\\TrojansDumplingsWhite\\FED1\\1TheDebtBook\\TheDebtBook.csproj",
-        "packagesPath": "C:\\Users\\entei\\.nuget\\packages\\",
-        "outputPath": "D:\\4_semester_git\\TrojansDumplingsWhite\\FED1\\1TheDebtBook\\obj\\",
+        "projectPath": "C:\\OliverKok\\gitDumpling\\FED1\\1TheDebtBook\\TheDebtBook.csproj",
+        "packagesPath": "C:\\Users\\Olive\\.nuget\\packages\\",
+        "outputPath": "C:\\OliverKok\\gitDumpling\\FED1\\1TheDebtBook\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\entei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olive\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -76,16 +76,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.2, )",
+              "version": "[8.0.4, )",
               "autoReferenced": true
             },
             "SQLite.Net.Cipher": {
@@ -116,7 +116,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-ios17.2": {
           "targetAlias": "net8.0-ios",
@@ -131,16 +131,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.2, )",
+              "version": "[8.0.4, )",
               "autoReferenced": true
             },
             "SQLite.Net.Cipher": {
@@ -171,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-maccatalyst17.2": {
           "targetAlias": "net8.0-maccatalyst",
@@ -186,16 +186,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.2, )",
+              "version": "[8.0.4, )",
               "autoReferenced": true
             },
             "SQLite.Net.Cipher": {
@@ -227,7 +227,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
@@ -242,11 +242,11 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "SQLite.Net.Cipher": {
               "target": "Package",
@@ -282,7 +282,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
