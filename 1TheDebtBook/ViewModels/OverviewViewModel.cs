@@ -28,10 +28,21 @@ public partial class OverviewViewModel : ObservableObject
     }
     private async Task Initialize()
     {
-        var dTransactionViews = await _database.GetTransactionsForDebtor(_debtorsViewModel.SelectedDebtor.Id);
-        foreach (var dTransactionView in dTransactionViews)
+        if (_debtorsViewModel.SelectedDebtor != null)
         {
-            Transactions.Add(dTransactionView);
+            var dTransactionViews = await _database.GetTransactionsForDebtor(_debtorsViewModel.SelectedDebtor.Id);
+            foreach (var dTransactionView in dTransactionViews)
+            {
+                Transactions.Add(dTransactionView);
+            }
+        }
+        else
+        {
+            var dTransactionViews = await _database.GetTransactions();
+            foreach (var dTransactionView in dTransactionViews)
+            {
+                Transactions.Add(dTransactionView);
+            }
         }
     }
 
@@ -68,6 +79,6 @@ public partial class OverviewViewModel : ObservableObject
     public async Task BackButtonPressed()
     {
         _debtorsViewModel.SelectedDebtor = null;
-        await AppShell.Current.Navigation.PopAsync();
+        await AppShell.Current.Navigation.PopToRootAsync();
     }
 }

@@ -26,7 +26,7 @@ namespace _1TheDebtBook
             // adding pages
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<AddPage>();
-            builder.Services.AddSingleton<OverviewPage>();
+            builder.Services.AddTransient<OverviewPage>();
 #endif      
 
             var app = builder.Build();

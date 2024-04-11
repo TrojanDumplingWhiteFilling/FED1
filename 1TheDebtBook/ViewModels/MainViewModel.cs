@@ -45,10 +45,11 @@ namespace _1TheDebtBook.ViewModels
         public async Task ClearAllData()
         {
             await _database.ClearAllData();
+            Debtors.Clear();
         }
 
         [ObservableProperty]
-        Debtor? selectedDebtor = null;
+        Debtor selectedDebtor = null;
 
 
         [RelayCommand]

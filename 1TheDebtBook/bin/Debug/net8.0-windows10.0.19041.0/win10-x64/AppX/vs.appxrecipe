@@ -29,13 +29,13 @@
     <AppXManifest Include="D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-04-11T12:56:01.990</Modified>
+      <Modified>2024-04-11T13:50:56.993</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-04-11T12:56:01.850</Modified>
+      <Modified>2024-04-11T13:50:56.909</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\TheDebtBook.runtimeconfig.json">
       <PackagePath>TheDebtBook.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\TheDebtBook.dll">
       <PackagePath>TheDebtBook.dll</PackagePath>
-      <Modified>2024-04-11T12:56:01.017</Modified>
+      <Modified>2024-04-11T13:50:56.701</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>TheDebtBook.exe</PackagePath>
-      <Modified>2024-04-11T12:56:01.059</Modified>
+      <Modified>2024-04-11T13:50:56.703</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\4_semester_git\TrojansDumplingsWhite\FED1\1TheDebtBook\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>

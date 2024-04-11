@@ -6,22 +6,22 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <!-- Changed color palette -->
-    <Color x:Key="Primary">#fff</Color> 
-    <Color x:Key="PrimaryDark">#FC6E38</Color> 
-    <Color x:Key="PrimaryDarkText">#FC4C38</Color>
-    <Color x:Key="Secondary">#FF1BDB</Color> 
-    <Color x:Key="SecondaryDarkText">#100c08</Color> 
-    <Color x:Key="Tertiary">#FC978C</Color> 
+    <Color x:Key="Primary">#3FC1C9</Color>
+    <Color x:Key="PrimaryDark">#252A34</Color>
+
+    <Color x:Key="PrimaryDarkText">#08D9D6</Color>
+    <Color x:Key="SecondaryDarkText">#FF2E63</Color>
+
+
+    <Color x:Key="Secondary">#EAEAEA</Color>
+    <Color x:Key="Tertiary">#252A34</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
-    <Color x:Key="kokOrange">#fff</Color> <!-- Changed to White-->
-    <Color x:Key="kokBlue">#FF831C</Color> <!-- Changed to Orange'ish -->
+    <Color x:Key="Magenta">#F7C566</Color>
+    <Color x:Key="MidnightBlue">#DC6B19</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
 
-
-    <!-- Gray scale -->
     <Color x:Key="Gray100">#E1E1E1</Color>
     <Color x:Key="Gray200">#C8C8C8</Color>
     <Color x:Key="Gray300">#ACACAC</Color>
@@ -45,4 +45,5 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
 </ResourceDictionary>

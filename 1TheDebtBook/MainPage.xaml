@@ -4,6 +4,27 @@
              x:DataType="viewmodel:MainViewModel"
              x:Class="_1TheDebtBook.MainPage">
 
+    <ContentPage.Resources>
+        <Style x:Key="AddOverviewButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="175" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+
+        <Style x:Key="ClearButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+
+        <!-- Styles for CollectionView in Light Mode -->
+        <Style x:Key="ViewStyle" TargetType="CollectionView">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=#FF2E63, Light=#F7C566}"/>
+        </Style>
+
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <Frame 
@@ -11,8 +32,8 @@
                    CornerRadius="10" 
                    HeightRequest="300" 
                    WidthRequest="550"
-                   BorderColor="White">
-
+                   BorderColor="{AppThemeBinding Light=Black, Dark=White}"
+                   Style="{StaticResource ViewStyle}">
                 <ScrollView>
                     <StackLayout>
                         <CollectionView ItemsSource="{Binding Debtors}"
@@ -33,8 +54,6 @@
 
                                             <Label Grid.Column="0" Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
                                             <Label Grid.Column="1" Text="{Binding Amount}" HorizontalOptions="CenterAndExpand" />
-
-
                                         </Grid>
                                         <!-- Adjusted BoxView -->
                                         <BoxView HeightRequest="1" 
@@ -48,19 +67,33 @@
                     </StackLayout>
                 </ScrollView>
             </Frame>
+            <Grid HorizontalOptions="Center" VerticalOptions="Center" ColumnSpacing="15" Padding="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button 
-                Text="Add Debtor"
-                Command="{Binding NavigateCommand}"
-                HorizontalOptions="Center" />
-            <Button 
-                Text="Go to Overview (Generalez)"
-                Command="{Binding NavigateOverCommand}"
-                HorizontalOptions="Center" />
-            <Button 
-                Text="Clear Data"
-                Command="{Binding ClearAllDataCommand}"
-                HorizontalOptions="Center" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0"
+                            Text="Add Debtor"
+                            Command="{Binding NavigateCommand}"
+                            Style="{StaticResource AddOverviewButtonStyle}" />
+
+                <Button Grid.Column="2"
+                            Text="Go to Overview"
+                            Command="{Binding NavigateOverCommand}"
+                            Style="{StaticResource AddOverviewButtonStyle}" />
+
+                <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+                            Text="Clear Data"
+                            Command="{Binding ClearAllDataCommand}"
+                            Style="{StaticResource ClearButtonStyle}" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
