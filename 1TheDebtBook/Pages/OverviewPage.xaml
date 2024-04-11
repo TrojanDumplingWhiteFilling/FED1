@@ -56,8 +56,6 @@
                                 VerticalOptions = "Center"
                                 HorizontalOptions = "Center"/>
 
-                            <DatePicker Date="{Binding DTransactionDate}" Grid.Row="1" />
-
                             <Entry Placeholder = "Enter Amount"
                                 Text = "{Binding InputAmount, Mode=TwoWay, FallbackValue=0}"
                                 Grid.Row="2"/>
